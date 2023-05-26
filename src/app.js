@@ -14,7 +14,7 @@ server.set('views', __dirname + '/views')
 server.use('/public', express.static('public'))
 server.use(express.urlencoded({extended: true}))
 server.use(express.json())
-server.use('/', router)
+//server.use('/', router)
 //server.use(errorHandler)
 //server.use(notFoundHandler)
 

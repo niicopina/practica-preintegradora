@@ -1,7 +1,7 @@
-import server from "./app";
+import server from "./app.js";
 import { Server } from "socket.io";
 
-const PORT = 8080
+const PORT = 7000
 
 const ready = () => {
     console.log('server ready on port: ' + PORT)
