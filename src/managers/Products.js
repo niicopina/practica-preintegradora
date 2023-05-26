@@ -26,4 +26,30 @@ class ProductManager {
         products.push(product)
         this.saveProductsToFile(products)
     }
+    getProducts(){
+        return this.getProductsFromFile()
+    }
+    getProductsById(){
+        const products = this.getProductsFromFile()
+        const product = products.find(p => p.id === id)
+        if(!product){
+            console.error('Product not found!')
+            return null
+        }
+        return product
+    }
+    updateProduct(id, updatedProduct){
+        const products = this.getProductsFromFile()
+        const index = products.findIndex(p => p.id === id)
+        if(index === -1){
+            console.error('Product not found!')
+            return
+        }
+        products[index] = {
+            ...products[index],
+            ...updatedProduct,
+            id: id
+        }
+        this.saveProductsToFile(products)
+    }
 }
