@@ -1,0 +1,11 @@
+[
+  {
+    "title": "Lemon Pie",
+    "description": "Torta de limon",
+    "price": 3000,
+    "stock": 3,
+    "thumbnail": "https://pasteleriadc.com/wp-content/uploads/torta-dripcake-helado-768x1078.jpg",
+    "code": "prod1",
+    "id": 1
+  }
+]

@@ -52,4 +52,33 @@ class ProductManager {
         }
         this.saveProductsToFile(products)
     }
+    deleteProduct(id){
+        const products = this.getProductsFromFile()
+        const index = products.findIndex(p => p.id === id)
+        if(index === -1){
+            console.error('Product not found!')
+            return
+        }
+        products.splice(index, 1)
+        this.saveProductsToFile(products)
+    }
+    getProductsFromFile(){
+        const data = fs.readFileSync(this.path, 'utf-8')
+        return JSON.parse(data)
+    }
+    saveProductsToFile(products){
+        fs.writeFileSync(this.path, JSON.stringify(products, null, 2))
+    }
 }
+const productManager = new ProductManager('./src/data/products.json')
+
+/* productManager.addProduct({
+    title: 'Lemon Pie',
+    description: 'Torta de limon',
+    price: 3000,
+    stock: 3,
+    thumbnail: "https://pasteleriadc.com/wp-content/uploads/torta-dripcake-helado-768x1078.jpg",
+    code: 'prod1'
+}) */
+
+export default productManager
