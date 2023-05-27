@@ -40,3 +40,35 @@ carts_router.post(
         }
     }
 )
+carts_router.put(
+    '/carts/:cid/product/:pid/:units',
+    async(req,res,next)=> {
+        try {
+            const cartId = parseInt(req.params.cid)
+            const productId = parseInt(req.params.pid)
+            const units = parseInt(req.params.units)
+            const result = await cartManager.deleteCartProduct(cartId, productId, units)
+            if( result === 'Cart not found' || 
+                result === 'Product not found in cart' ||
+                result === 'Not enough units in the cart'){
+                    return res.json({
+                        status: 400,
+                        message: result
+                    })
+                }else if(result === 'Error deleting cart product'){
+                    return res.json({
+                        status: 500,
+                        message: result
+                    })
+                }
+                return res.json({
+                    status: 200,
+                    message: 'Cart product deleted successfully'
+                })
+        } catch (error) {
+            next(error)
+        }
+    }
+)
+
+export default carts_router
